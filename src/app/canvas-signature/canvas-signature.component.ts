@@ -16,7 +16,7 @@ export class CanvasSignatureComponent implements OnInit {
   isDrawing = false;
   img: any;
 
-  lineWidth = 20;
+  lineWidth = 5;
   halfLineWidth = this.lineWidth / 2;
   fillStyle = '#333';
   strokeStyle = '#333';
