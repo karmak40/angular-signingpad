@@ -34,6 +34,11 @@ export class CanvasSignatureComponent implements OnInit {
     this.isDrawing = false;
   }
 
+  @HostListener('document:drawend', ['$event'])
+  public oTouchUp(e: any) {
+    this.isDrawing = false;
+  }
+
   public onMouseDown(e: any) {
     this.isDrawing = true;
     const coords = this.relativeCoords(e);
@@ -49,6 +54,7 @@ export class CanvasSignatureComponent implements OnInit {
   }
 
   public onTouchDown(e: any) {
+    e.preventDefault();
     this.isDrawing = true;
     const coords = this.relativeCoords(e);
     this.context.moveTo(coords.x, coords.y);
@@ -56,6 +62,7 @@ export class CanvasSignatureComponent implements OnInit {
 
   public onTouchMove(e : any) {
     if (this.isDrawing) {
+      e.preventDefault();
       const coords = this.relativeCoords(e);
       this.context.lineTo(coords.x, coords.y);
       this.context.stroke();
