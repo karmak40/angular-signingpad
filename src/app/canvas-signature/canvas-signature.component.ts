@@ -48,6 +48,22 @@ export class CanvasSignatureComponent implements OnInit {
     }
   }
 
+  public onTouchDown(e: any) {
+    this.isDrawing = true;
+    const coords = this.relativeCoords(e);
+    this.context.moveTo(coords.x, coords.y);
+  }
+
+  public onTouchMove(e : any) {
+    if (this.isDrawing) {
+      const coords = this.relativeCoords(e);
+      this.context.lineTo(coords.x, coords.y);
+      this.context.stroke();
+    }
+  }
+
+
+
   private relativeCoords(event: any) {
     const bounds = event.target.getBoundingClientRect();
     const x = event.clientX - bounds.left;
