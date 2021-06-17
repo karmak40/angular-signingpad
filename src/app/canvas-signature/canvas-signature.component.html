@@ -1,0 +1,23 @@
+<p>canvas-signature works!</p>
+
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+<canvas #sigPad width="300" height="150" (mousedown)="onMouseDown($event)"
+  (mousemove)="onMouseMove($event)">
+</canvas>
+ 
+<br/>
+  <button (click)="clear()">clear</button>
+  <button (click)="save()">save</button>
+<br/>
+  
+<img [src]="img">
+<br/>
+  
+<span>
+    {{img}}
+</span>
