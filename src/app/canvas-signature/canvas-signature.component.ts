@@ -101,13 +101,27 @@ export class CanvasSignatureComponent implements OnInit {
   }
 
   getMosuePositionOnCanvas(event) {
-    const clientX = event.clientX || event.touches[0].clientX;
+   /* const clientX = event.clientX || event.touches[0].clientX;
     const clientY = event.clientY || event.touches[0].clientY;
     const { offsetLeft, offsetTop } = event.target;
     const canvasX = clientX - offsetLeft;
     const canvasY = clientY - offsetTop;
   
     return { x: canvasX, y: canvasY };
+*/
+    if (!e)
+    var e = event;
+
+    if (e.offsetX) {
+      var mouseX = e.offsetX;
+      var mouseY = e.offsetY;
+      return { x: mouseX, y: mouseY };
+    }
+    else  {
+      var mouseX = e.layerX;
+      var mouseY = e.layerY;
+      return { x: mouseX, y: mouseY };
+    }
   }
 
 /*
