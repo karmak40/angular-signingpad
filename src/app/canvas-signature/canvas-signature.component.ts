@@ -100,13 +100,62 @@ export class CanvasSignatureComponent implements OnInit {
     this.context.clearRect(0, 0,  this.sigPadElement.width,  this.sigPadElement.height);
   }
 
+ /* getMosuePositionOnCanvas(event) {
+    const clientX = event.clientX || event.touches[0].clientX;
+    const clientY = event.clientY || event.touches[0].clientY;
+    const { offsetLeft, offsetTop } = event.target;
+    const canvasX = clientX - offsetLeft;
+    const canvasY = clientY - offsetTop;
+  
+    return { x: canvasX, y: canvasY };
+  }*/
+
   getMosuePositionOnCanvas (event) {
     var rect = this.sigPadElement.getBoundingClientRect();
     return {
-        x: (event.clientX - rect.left) / (rect.right - rect.left) * this.sigPadElement.width,
-        y: (event.clientY - rect.top) / (rect.bottom - rect.top) * this.sigPadElement.height
+        x: ( (event.clientX || event.touches[0].clientX) - rect.left) / (rect.right - rect.left) * this.sigPadElement.width,
+        y: ( (event.clientY || event.touches[0].clientY) - rect.top) / (rect.bottom - rect.top) * this.sigPadElement.height
     };
 }
+
+/*
+
+  public onMouseDown(e: any) {
+    this.isDrawing = true;
+    const coords = this.relativeCoords(e);
+    this.context.moveTo(coords.x, coords.y);
+  }
+
+  public onMouseMove(e : any) {
+    if (this.isDrawing) {
+      const coords = this.relativeCoords(e);
+      this.context.lineTo(coords.x, coords.y);
+      this.context.stroke();
+    }
+  }
+
+  public onTouchDown(e: any) {
+    e.preventDefault();
+    this.isDrawing = true;
+    const coords = this.relativeCoords(e);
+    this.context.moveTo(coords.x, coords.y);
+  }
+
+  public onTouchMove(e : any) {
+    if (this.isDrawing) {
+      e.preventDefault();
+      const coords = this.relativeCoords(e);
+      this.context.lineTo(coords.x, coords.y);
+      this.context.stroke();
+    }
+  }
+
+  private relativeCoords(event: any) {
+    const bounds = event.target.getBoundingClientRect();
+    const x = event.clientX - bounds.left;
+    const y = event.clientY - bounds.top;
+    return { x: x, y: y };
+  }*/
 
   public clear() {
     this.context.clearRect(0, 0, this.sigPadElement.width, this.sigPadElement.height);
