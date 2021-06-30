@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, OnInit, HostListener, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, OnInit, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
 import { SaveService } from '../services/SaveService';
 
 @Component({
@@ -21,6 +21,8 @@ export class CanvasSignatureComponent implements OnInit {
   @Input() fillStyle: string = '#333';
   @Input() strokeStyle: string = '#333';
   @Input() shadowColor: string = '#333';
+
+  @Output() imageSaveEvent = new EventEmitter<string>();
 
   halfLineWidth = this.lineWidth / 2;
   shadowBlur = this.lineWidth / 4;
@@ -114,7 +116,6 @@ export class CanvasSignatureComponent implements OnInit {
 
   public save() {
     this.img = this.sigPadElement.toDataURL("image/png");
-    this.saveService.saveImageData(this.img).subscribe()
-    console.log(this.img);
+    this.imageSaveEvent.emit(this.img);
   }
 }

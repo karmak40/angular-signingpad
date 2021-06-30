@@ -1,7 +1,2 @@
-
-
-<app-canvas-signature 
-    [lineWidth] = 5
-    [fillStyle] = "'#12321'"  
->
+<app-canvas-signature [lineWidth]=5 [fillStyle]="'#12321'" (imageSaveEvent)="saveImageData($event)">
 </app-canvas-signature>
