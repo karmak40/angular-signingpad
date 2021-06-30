@@ -1,12 +1,5 @@
-<p>canvas-signature works!</p>
 
-<br/>
-<br/>
-
-<br/>
-<br/>
-
-<canvas #sigPad width="300" height="150" 
+<canvas #sigPad  
   (mousedown)="handleWritingStart($event)"
   (mousemove)="handleWritingInProgress($event)"
   (mouseup)="handleDrawingEnd($event)"
@@ -23,11 +16,5 @@
   <button (click)="save()">save</button>
 <br/>
   
-<img [src]="img">
-<br/>
-  
-<span>
-    {{img}}
-</span>
 
 
